@@ -1,0 +1,17 @@
+Main:
+    name: "HomeScreen"
+    md_bg_color: app.theme_cls.accent_light
+    GridLayout:
+        cols: 1
+        Label:
+            text: "micro:bit interface"
+            font_size: 60
+            color: app.theme_cls.primary_dark
+        GridLayout:
+            cols: 2
+            Button:
+                text: "Start"
+                on_release:
+                    app.root.current = "CommandScreen"
+            Button:
+                text: "Settings"

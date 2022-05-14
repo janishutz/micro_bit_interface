@@ -1,0 +1,27 @@
+Command:
+    name: "CommandScreen"
+    md_bg_color: 0, 0, 0, 1
+    FloatLayout:
+        Label:
+            id: cmd_out
+            size_hint: 0.96, 0.6
+            pos_hint: {"x": 0.03, "y": 0.35}
+            text_size: self.size
+            color: 1, 1, 1, 1
+            text: ""
+            valign: "bottom"
+        TextInput:
+            color: 1, 1, 1, 1
+            foreground_color: 1, 1, 1, 1
+            background_color: 0, 0, 0, 1
+            size_hint: 0.96, 0.1
+            pos_hint: {"x": 0.02, "y": 0.2}
+            id: tin
+            hint_text: "Enter command..."
+            multiline: False
+            on_text: root.autocomplete()
+            on_text_validate: root.runcommand()
+        Button:
+            text: "back"
+            size_hint: 0.1, 0.1
+            pos_hint: {"x": 0.02, "y": 0.02}

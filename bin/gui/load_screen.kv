@@ -1,0 +1,23 @@
+Load:
+    name: "LoadScreen"
+    on_enter: root.start_pb()
+    radius: [25, 25, 25, 25]
+    md_bg_color: app.theme_cls.accent_light
+    GridLayout:
+        cols: 1
+        Label:
+            text: "micro:bit interface"
+            font_size: 60
+            color: app.theme_cls.primary_dark
+        FloatLayout:
+            MDProgressBar:
+                id: progress
+                size_hint: .6, .6
+                pos_hint: {"x": 0.2, "y": 0.3}
+                color: app.theme_cls.primary_dark
+                type: "determinate"
+                running_duration: 0.75
+                catching_duration: 0.5
+            Label:
+                color: "black"
+                text: "starting app ..."
