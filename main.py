@@ -21,6 +21,7 @@ from kivy.clock import Clock
 from kivy.core.window import Window
 import bin.others.autocomplete
 import bin.others.run_command
+import bin.others.history_manager
 
 
 ################################
@@ -31,6 +32,7 @@ config.read('./config/settings.ini')
 version_app = f"{config['Info']['version']}{config['Info']['subVersion']}"
 ac = bin.others.autocomplete.AutoComplete()
 rc = bin.others.run_command.RunCommand()
+hm = bin.others.history_manager.HistroyManager()
 
 ################################
 
@@ -103,6 +105,31 @@ class Main(MDScreen):
 ################
 
 class Command(MDScreen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.keyboard = Window.request_keyboard(None, self)
+        self.keyboard.bind(on_key_down=self.key_pressed)
+        self.__pos = -1
+
+    def key_pressed(self, keyboard, keycode, text, modifiers):
+        self.key = keycode[1]
+        if self.key == "up":
+            self.__pos += 1
+            self.__last_cmds = hm.get_history("./bin/data/command_history.csv").pop(0)
+            try:
+                self.ids.tin.text = self.__last_cmds.pop(self.__pos)
+            except IndexError:
+                self.__pos -= 1
+        elif self.key == "down":
+            self.__pos -= 1
+            self.__last_cmds = hm.get_history("./bin/data/command_history.csv").pop(0)
+            try:
+                self.ids.tin.text = self.__last_cmds.pop(self.__pos)
+            except IndexError:
+                self.__pos += 1
+        else:
+            pass
+
     def autocomplete(self):
         self.text = self.ids.tin.text
         self.input = self.text[len(self.text) - 1:]
@@ -121,6 +148,7 @@ class Command(MDScreen):
             logger.debug(f"The following command has been run successfully: {self.ids.tin.text}")
         else:
             logger.debug(f"The following command has failed to run: {self.ids.tin.text}")
+        hm.append_history(self.ids.tin.text, "./bin/data/command_history.csv")
         self.ids.tin.text = ""
         self.__history = self.ids.cmd_out.text
         self.__output_text = self.__history + "\n\n" + str(self.__info)

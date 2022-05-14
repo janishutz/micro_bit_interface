@@ -25,3 +25,6 @@ Command:
             text: "back"
             size_hint: 0.1, 0.1
             pos_hint: {"x": 0.02, "y": 0.02}
+            on_release:
+                app.root.current = "HomeScreen"
+                root.manager.transition.direction = "right"
