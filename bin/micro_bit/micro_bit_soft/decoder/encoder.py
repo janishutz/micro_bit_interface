@@ -1,4 +1,6 @@
 # create class that encodes plain text into morse
+import microbit
+
 
 class Encoder:
     # init class
@@ -24,6 +26,7 @@ class Encoder:
         self.__input_raw = ""
         self.__output = []
         self.__pos = 0
+        self.check = 0
 
     def encode(self):
         self.__input_raw = self.get_input()
@@ -33,4 +36,20 @@ class Encoder:
         return self.__output
 
     def get_input(self):
-        return input("please input some text here to transmit: ").upper()
+        self.str_input = "Please type the text to be morsed. "
+        microbit.uart.write(self.str_input.encode())
+        self.input = ""
+        while self.input == "":
+            self.input = microbit.uart.read(1)
+
+        self.ouput = ""
+        self.check = 0
+
+        while self.check < 3:
+            self.input = microbit.uart.read(1)
+            if self.input == "":
+                self.output += self.input
+                self.check += 1
+            else:
+                self.ouput += self.input
+        return self.ouput
