@@ -18,9 +18,9 @@ class RunCommand:
             try:
                 com.connect(19200, "")
                 com.send(command)
-                self.__return = "The command executed successfully"
-            except serial.SerialException:
-                self.__return = f"[micro:bit - {command}]: An error occurred running the command. (Maybe disconnected or no permission?)"
+                self.__return = f"[micro:bit - {command}] The command executed successfully"
+            except serial.SerialException as e:
+                self.__return = f"[micro:bit - {command}]: An error occurred running the command. (Maybe disconnected or no permission?) {e}"
         else:
             self.__return = "-micro:bit - No such command"
         return self.__return

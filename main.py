@@ -1,10 +1,11 @@
 #########################################################
 """@package docstring
-Micro:bit Bluetooth Interface, developed by simplePCBuilding, alpha 1.0
+Micro:bit USB / BLE Interface, developed by simplePCBuilding, alpha 1.0
 
-This App allows you to connect to a micro:bit via the USB cable and as such transmit to
-and recieve Data from it. This file here is the control file for the UI and as such
-should not be interfaced with. All the api files are located in the bin directory."""
+This App allows you to connect to a micro:bit via the USB cable (when the micro:bit is
+running micropython) or via BLE (when the micro:bit is running a C program) and as such
+transmit to and receive Data from it. This file here is the control file for the UI and
+as such should not be interfaced with. All the api files are located in the bin directory."""
 #########################################################
 
 # IMPORTS

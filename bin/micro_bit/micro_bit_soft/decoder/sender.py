@@ -8,4 +8,3 @@ while True:
     else:
         music.stop()
         pin1.write_digital(0)
-

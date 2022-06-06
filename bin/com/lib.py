@@ -14,7 +14,7 @@ class Com:
         self.str_input = ""
         self.str_get_input = ""
         self.xs = ""
-        self.__comport = '/dev/ttyUSB0'
+        self.__comport = '/dev/ttyACM0'
 
     def connect(self, baudrate, special_port):
         try:
@@ -47,7 +47,7 @@ class Com:
             return 0
 
     def decode_int(self, value):
-        self.i = int(value, base = 16)
+        self.i = int(value, base=16)
         return self.i
 
     def decode_float(self, value):

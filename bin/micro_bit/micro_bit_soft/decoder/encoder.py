@@ -24,6 +24,7 @@ class Encoder:
                       '(': '-.--.', ')': '-.--.-', ':': '---...',
                       '!': '-.-.--', ' ': '@'}
         self.__input_raw = ""
+        self.__input = ""
         self.__output = []
         self.__pos = 0
         self.check = 0
