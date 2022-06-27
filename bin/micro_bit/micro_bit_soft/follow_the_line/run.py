@@ -1,3 +1,3 @@
-import ftl
+import ftl_dumb_version
 
-ftl.FollowTheLine().run()
+ftl_dumb_version.FollowTheLineDumnb().run()
