@@ -1,3 +1,6 @@
+# Deprecated
+This app will not see any further development as my focus has shifted to different technology
+
 # micro_bit_interface
 A simple program to interface with the micro:bit through usb
 
